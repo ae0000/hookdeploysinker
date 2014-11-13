@@ -47,13 +47,6 @@ func main() {
 		port = DEFAULT_PORT
 	}
 
-	//a := config.Get("commands.develop").([]interface{})
-	//fmt.Printf("a %+v\n", a)
-
-	//for _, x := range a {
-	//fmt.Printf("XXXXXXXXXXXXXXX\n\n %+v\n", x)
-	//}
-
 	fmt.Printf("-------------- starting to listen on port %d", port)
 	http.Handle("/hook", http.HandlerFunc(getHook))
 	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
@@ -82,7 +75,7 @@ func getHook(w http.ResponseWriter, req *http.Request) {
 		runCommands(h.Branch())
 	}
 
-	fmt.Fprint(w, "OK"+h.Ref)
+	fmt.Fprint(w, "OK: "+h.Ref)
 }
 
 // runCommands based on the branch that was in the hook
@@ -106,7 +99,6 @@ func runCommands(branch string) {
 		var out []byte
 		var err error
 
-		//	out, err = exec.Command("ls", "/tmp").Output()
 		switch len(split) {
 		case 0:
 			// Nothing to do
