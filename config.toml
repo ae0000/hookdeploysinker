@@ -1,0 +1,13 @@
+# hooklinesinker settings
+[server]
+port = "3457"
+
+[commands]
+develop = [
+	"ls",
+	"touch /tmp/dsfddfdf",
+	"ls /tmp/d*",
+	"ls",
+	"mkdir /tmp/a /tmp/b"
+]
+
